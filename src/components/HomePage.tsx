@@ -30,7 +30,7 @@ function PreviewModal({ caseData, onClose }: { caseData: MonsterCase; onClose: (
         transition={{ type: 'spring', damping: 20, stiffness: 300 }}
       >
         <div className="preview-header">
-          <span className="preview-icon">{caseData.icon}</span>
+          <span className="preview-icon" style={{ color: caseData.accent }}>&#9670;</span>
           <span className="preview-title">{caseData.name}</span>
           <button className="preview-close" onClick={onClose}>✕</button>
         </div>
@@ -85,7 +85,8 @@ function CaseCard({ caseKey, caseData, index, balance, onOpen }: {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: index * 0.1, type: 'spring', damping: 18 }}
       >
-        <div className="cc-badge">{caseData.icon}</div>
+        <div className="cc-badge" style={{ color: caseData.accent }}>&#9670;</div>
+        <div className={`cc-risk cc-risk-${caseData.risk}`}>{caseData.risk.toUpperCase()}</div>
 
         <div className="cc-hero">
           <img src={heroItem.img} alt={heroItem.name} className="cc-hero-img" />

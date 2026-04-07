@@ -2,7 +2,7 @@ import { useState, useCallback, useEffect, useRef } from 'react'
 import { MonsterItem, getItemSellValue } from '../data/cases'
 
 const STORAGE_KEY = 'monster-spinner-state'
-const STARTING_BALANCE = 50.00
+const STARTING_BALANCE = 150
 
 export interface InventoryEntry {
   item: MonsterItem
@@ -71,7 +71,7 @@ export function useGameState() {
     return stateRef.current.balance >= price
   }, [])
 
-  const spendMoney = useCallback((price: number, caseKey: string) => {
+  const spendMoney = useCallback((price: number, caseKey: string, count = 1) => {
     setState(prev => ({
       ...prev,
       balance: Math.round((prev.balance - price) * 100) / 100,
@@ -80,7 +80,7 @@ export function useGameState() {
         totalSpent: Math.round((prev.stats.totalSpent + price) * 100) / 100,
         casesOpenedByType: {
           ...prev.stats.casesOpenedByType,
-          [caseKey]: (prev.stats.casesOpenedByType[caseKey] || 0) + 1,
+          [caseKey]: (prev.stats.casesOpenedByType[caseKey] || 0) + count,
         },
       }
     }))

@@ -107,7 +107,7 @@ export function StatsPage({ stats, balance, inventoryValue, netProfit, startingB
           <div className="stat-case-breakdown">
             {Object.entries(stats.casesOpenedByType).map(([key, count]) => (
               <div key={key} className="stat-case-row">
-                <span style={{ color: CASES[key]?.accent }}>{CASES[key]?.icon} {CASES[key]?.shortName}</span>
+                <span style={{ color: CASES[key]?.accent }}>{CASES[key]?.shortName}</span>
                 <span>{count}</span>
               </div>
             ))}
